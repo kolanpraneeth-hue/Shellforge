@@ -3,6 +3,7 @@
 #include <string.h>
 #include "input.h"
 #include "process.h"
+#include "builtin.h"
 
 #define MAX_TOKENS 64
 
@@ -81,7 +82,10 @@ int main(void)
 
         if (tokens[0] != NULL)
         {
-            execute(tokens);
+            if (execute_builtin(tokens) == 0)
+            {
+                execute(tokens);
+            }
         }
 
         free(tokens);
